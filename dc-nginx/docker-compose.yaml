@@ -1,0 +1,54 @@
+
+version: '3.8'
+services:
+  <service-1>:
+    image: ''
+    restart: unless-stopped
+    hostname: 'service-h'
+    container_name: 'service-c'
+    environment:
+      - KEY="VALUE"
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - gitlab
+    ports:
+      - ''
+      - ''
+    volumes:
+      - '$APP_DC_HOMEDIR/gitlab-config/svc-1/config:/etc/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-config/svc-2/config:/etc/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-1/logs:/var/log/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-2/logs:/var/log/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-1/data:/var/opt/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-2/data:/var/opt/gitlab'
+
+<service-2>:
+    image: ''
+    restart: unless-stopped
+    hostname: 'service-h'
+    container_name: 'service-c'
+    environment:
+      - KEY="VALUE"
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - gitlab
+    ports:
+      - ''
+      - ''
+    volumes:
+      - '$APP_DC_HOMEDIR/gitlab-config/svc-1/config:/etc/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-config/svc-2/config:/etc/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-1/logs:/var/log/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-2/logs:/var/log/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-1/data:/var/opt/gitlab'
+      - '$APP_DC_HOMEDIR/gitlab-pdata/svc-2/data:/var/opt/gitlab'
+
+networks:
+  gitlab:
+    name: gitlab-network
+
+volumes:
+  prometheus-v:
+    name: prometheus-data
